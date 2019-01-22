@@ -1,0 +1,63 @@
+package com.honam.kyyeto.hfarmers;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+
+    private DrawerLayout drawer;
+
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("HFarmers");
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+
+        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Home"));
+        tabLayout.addTab(tabLayout.newTab().setText("Story"));
+        tabLayout.addTab(tabLayout.newTab().setText("Store"));
+
+        tabLayout.addOnTabSelectedListener(this);
+        viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount()));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+}
