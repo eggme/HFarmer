@@ -14,25 +14,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by LSJ on 2015-08-19.
  */
 public class HomeFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    PagerSnapHelper pagerSnapHelper;
-    LinearLayoutManager layoutManager;
-    Handler handler;
-    Runnable runnable;
+    private RecyclerView recyclerView;
+    private RecyclerView month_goods;
+    private PagerSnapHelper pagerSnapHelper;
+    private LinearLayoutManager layoutManager;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private Handler handler;
+    private Runnable runnable;
+
+    private ArrayList<Month_Goods> list = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.slide_recyclerview);
+        month_goods = (RecyclerView)view.findViewById(R.id.month_goods);
+
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         pagerSnapHelper = new PagerSnapHelper();
+
         if(handler == null) {
             handler = new Handler();
             runnable = new Runnable() {
@@ -51,6 +60,19 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new RecyclerViewAdapter(getContext()));
         pagerSnapHelper.attachToRecyclerView(recyclerView);
+
+        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
+        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
+        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
+
+        GoodsAdapter adapter = new GoodsAdapter(getContext(), list);
+
+        mLayoutManager = new LinearLayoutManager(getContext());
+        month_goods.setLayoutManager(mLayoutManager);
+        month_goods.setAdapter(adapter);
+
         return view;
     }
 }
