@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import java.util.ArrayList;
 
 
@@ -24,6 +25,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView month_goods;
+    private RecyclerView md_goods;
     private PagerSnapHelper pagerSnapHelper;
     private LinearLayoutManager layoutManager;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
     private Runnable runnable;
 
     private ArrayList<Month_Goods> list = new ArrayList<>();
+    private ArrayList<HorizontalData> mdList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -38,6 +41,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.slide_recyclerview);
         month_goods = (RecyclerView)view.findViewById(R.id.month_goods);
+        md_goods = (RecyclerView)view.findViewById(R.id.md_goods);
 
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         pagerSnapHelper = new PagerSnapHelper();
@@ -73,6 +77,27 @@ public class HomeFragment extends Fragment {
         month_goods.setLayoutManager(mLayoutManager);
         month_goods.setAdapter(adapter);
 
+        mdList.add(new HorizontalData("맛있는 거봉 초대박 특가", R.drawable.grape));
+        mdList.add(new HorizontalData("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        mdList.add(new HorizontalData("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        mdList.add(new HorizontalData("맛있는 수박 초대박 특가", R.drawable.watermelon));
+        mdList.add(new HorizontalData("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
+        HorizontalAdapter mdAdapter = new HorizontalAdapter(getContext(), mdList);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        md_goods.setLayoutManager(mLayoutManager);
+        md_goods.setAdapter(mdAdapter);
+
         return view;
+
     }
+
+
+
+
+
+
+
+
+
+
 }
