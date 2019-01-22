@@ -5,14 +5,12 @@ package com.honam.kyyeto.hfarmers;
  */
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -32,11 +30,14 @@ public class HomeFragment extends Fragment {
     private PagerSnapHelper pagerSnapHelper;
     private LinearLayoutManager layoutManager;
     private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mdLayoutManager;
+    private RecyclerView.Adapter mdAdapter;
     private Handler handler;
     private Runnable runnable;
 
     private ArrayList<Month_Goods> list = new ArrayList<>();
-    private ArrayList<HorizontalData> mdList = new ArrayList<>();
+    private ArrayList<Md_Goods> mdlist = new ArrayList<>();
+
 
     @Nullable
     @Override
@@ -44,7 +45,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.slide_recyclerview);
         month_goods = (RecyclerView)view.findViewById(R.id.month_goods);
-        md_goods = (RecyclerView)view.findViewById(R.id.md_goods);
+        md_goods = (RecyclerView) view.findViewById(R.id.md_goods);
+
 
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         pagerSnapHelper = new PagerSnapHelper();
@@ -90,16 +92,29 @@ public class HomeFragment extends Fragment {
 
             }
         }));
+        mdlist.add(new Md_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
+        mdlist.add(new Md_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        mdlist.add(new Md_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        mdlist.add(new Md_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
 
-        mdList.add(new HorizontalData("맛있는 거봉 초대박 특가", R.drawable.grape));
-        mdList.add(new HorizontalData("맛있는 오렌지 초대박 특가", R.drawable.orange));
-        mdList.add(new HorizontalData("맛있는 딸기 초대박 특가", R.drawable.strawberry));
-        mdList.add(new HorizontalData("맛있는 수박 초대박 특가", R.drawable.watermelon));
-        mdList.add(new HorizontalData("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
-        HorizontalAdapter mdAdapter = new HorizontalAdapter(getContext(), mdList);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        md_goods.setLayoutManager(mLayoutManager);
+        md_goods = (RecyclerView)view.findViewById(R.id.md_goods);
+        md_goods.setHasFixedSize(true);
+        mdLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
+        md_goods.setLayoutManager(mdLayoutManager);
+
+        mdAdapter = new MdGoodsAdapter(getContext(), mdlist);
         md_goods.setAdapter(mdAdapter);
+        md_goods.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), md_goods, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(), position+"번 째 아이템 클릭", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
 
         return view;
 
