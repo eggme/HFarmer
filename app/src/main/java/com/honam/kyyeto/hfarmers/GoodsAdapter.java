@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,15 +24,17 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsViewHol
     }
 
     @Override
-    public GoodsAdapter.GoodsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GoodsAdapter.GoodsViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_items, parent, false);
         return new GoodsAdapter.GoodsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(GoodsAdapter.GoodsViewHolder holder, int position) {
-        holder.imageView.setImageResource(list.get(position).getDrawableId());
-        holder.textView.setText(list.get(position).getTitle());
+
+        GoodsViewHolder myViewHolder = (GoodsViewHolder) holder;
+        myViewHolder.imageView.setImageResource(list.get(position).getDrawableId());
+        myViewHolder.textView.setText(list.get(position).getTitle());
     }
 
     @Override
@@ -38,13 +42,15 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsViewHol
         return list.size();
     }
 
-    public class GoodsViewHolder extends RecyclerView.ViewHolder{
+    public static class GoodsViewHolder extends RecyclerView.ViewHolder{
 
+        RelativeLayout layout;
         ImageView imageView;
         TextView textView;
 
         public GoodsViewHolder(View itemView) {
             super(itemView);
+            layout = (RelativeLayout)itemView.findViewById(R.id.layout);
             imageView = (ImageView)itemView.findViewById(R.id.image);
             textView = (TextView)itemView.findViewById(R.id.title);
         }

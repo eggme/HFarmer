@@ -8,9 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"></android.support.v7.widget.RecyclerView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/month_goods"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="10dp"
+            android:textColor="#f00"
+            android:text="이달의 상품"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/month_goods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>
