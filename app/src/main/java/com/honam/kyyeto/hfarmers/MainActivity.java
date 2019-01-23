@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import android.support.v7.widget.Toolbar;
 
+import com.honam.kyyeto.hfarmers.Fragment.FragmentAdapter;
+
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 

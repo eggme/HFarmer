@@ -1,8 +1,12 @@
-package com.honam.kyyeto.hfarmers;
+package com.honam.kyyeto.hfarmers.Fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.honam.kyyeto.hfarmers.Fragment.HomeFragment;
+import com.honam.kyyeto.hfarmers.Fragment.StoreFragment;
+import com.honam.kyyeto.hfarmers.Fragment.StoryFragment;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
 

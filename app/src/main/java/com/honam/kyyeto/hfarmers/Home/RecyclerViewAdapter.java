@@ -1,4 +1,4 @@
-package com.honam.kyyeto.hfarmers;
+package com.honam.kyyeto.hfarmers.Home;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.honam.kyyeto.hfarmers.R;
 
 /**
  * Created by kyyet on 2019-01-22.

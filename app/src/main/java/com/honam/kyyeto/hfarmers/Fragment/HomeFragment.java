@@ -1,4 +1,4 @@
-package com.honam.kyyeto.hfarmers;
+package com.honam.kyyeto.hfarmers.Fragment;
 
 /**
  * Created by kyyet on 2019-01-22.
@@ -15,6 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
+import com.honam.kyyeto.hfarmers.Home.GoodsAdapter;
+import com.honam.kyyeto.hfarmers.Home.MdGoodsAdapter;
+import com.honam.kyyeto.hfarmers.Home.Md_Goods;
+import com.honam.kyyeto.hfarmers.Home.Month_Goods;
+import com.honam.kyyeto.hfarmers.R;
+import com.honam.kyyeto.hfarmers.RecyclerItemClickListener;
+import com.honam.kyyeto.hfarmers.Home.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -75,6 +83,16 @@ public class HomeFragment extends Fragment {
         list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
         list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
         list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
+        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
+        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
+        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
+        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
+        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
+        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
 
         GoodsAdapter adapter = new GoodsAdapter(getContext(), list);
 
@@ -92,6 +110,10 @@ public class HomeFragment extends Fragment {
 
             }
         }));
+        mdlist.add(new Md_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
+        mdlist.add(new Md_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
+        mdlist.add(new Md_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
+        mdlist.add(new Md_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
         mdlist.add(new Md_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
         mdlist.add(new Md_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
         mdlist.add(new Md_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));

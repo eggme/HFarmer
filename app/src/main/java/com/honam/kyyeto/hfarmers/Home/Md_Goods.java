@@ -1,4 +1,4 @@
-package com.honam.kyyeto.hfarmers;
+package com.honam.kyyeto.hfarmers.Home;
 
 public class Md_Goods {
     private String title;
