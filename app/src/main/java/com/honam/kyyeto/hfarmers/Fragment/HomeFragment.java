@@ -3,6 +3,7 @@ package com.honam.kyyeto.hfarmers.Fragment;
 /**
  * Created by kyyet on 2019-01-22.
  */
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.honam.kyyeto.hfarmers.Home.Month_Goods;
 import com.honam.kyyeto.hfarmers.R;
 import com.honam.kyyeto.hfarmers.RecyclerItemClickListener;
 import com.honam.kyyeto.hfarmers.Home.RecyclerViewAdapter;
+import com.honam.kyyeto.hfarmers.DetailGoodsActivity;
 
 import java.util.ArrayList;
 
@@ -75,21 +77,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(new RecyclerViewAdapter(getContext()));
         pagerSnapHelper.attachToRecyclerView(recyclerView);
 
-        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
-        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
-        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
-        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
-        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
-        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
-        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
-        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
-        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
-        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
-        list.add(new Month_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
-        list.add(new Month_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
-        list.add(new Month_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
-        list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
-        list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
+
 
         mdlist.add(new Md_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
         mdlist.add(new Md_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
@@ -111,6 +99,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), position+"번 째 아이템 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), DetailGoodsActivity.class);
+                startActivity(intent);
             }
 
             @Override
