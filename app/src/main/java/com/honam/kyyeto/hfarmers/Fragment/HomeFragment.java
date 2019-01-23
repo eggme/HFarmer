@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-import com.honam.kyyeto.hfarmers.Home.GoodsAdapter;
 import com.honam.kyyeto.hfarmers.Home.MdGoodsAdapter;
 import com.honam.kyyeto.hfarmers.Home.Md_Goods;
 import com.honam.kyyeto.hfarmers.Home.Month_Goods;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView month_goods;
     private RecyclerView md_goods;
     private PagerSnapHelper pagerSnapHelper;
     private LinearLayoutManager layoutManager;
@@ -52,7 +50,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.slide_recyclerview);
-        month_goods = (RecyclerView)view.findViewById(R.id.month_goods);
         md_goods = (RecyclerView) view.findViewById(R.id.md_goods);
 
 
@@ -94,22 +91,6 @@ public class HomeFragment extends Fragment {
         list.add(new Month_Goods("맛있는 수박 초대박 특가", R.drawable.watermelon));
         list.add(new Month_Goods("맛있는 참외 초대박 특가", R.drawable.orientalmelon));
 
-        GoodsAdapter adapter = new GoodsAdapter(getContext(), list);
-
-        mLayoutManager = new LinearLayoutManager(getContext());
-        month_goods.setLayoutManager(mLayoutManager);
-        month_goods.setAdapter(adapter);
-        month_goods.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), month_goods, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), position+"번 째 아이템 클릭", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-
-            }
-        }));
         mdlist.add(new Md_Goods("맛있는 거봉 초대박 특가", R.drawable.grape));
         mdlist.add(new Md_Goods("맛있는 오렌지 초대박 특가", R.drawable.orange));
         mdlist.add(new Md_Goods("맛있는 딸기 초대박 특가", R.drawable.strawberry));
