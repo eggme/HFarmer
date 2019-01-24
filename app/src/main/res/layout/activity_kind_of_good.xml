@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutCount"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/btnKind"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/etCount"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:background="@drawable/edittext_shape"
+        android:text="1"
+        android:textAlignment="center"
+        android:layout_below="@+id/tvTitle"/>
+
+    <Button
+        android:id="@+id/btnPlus"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/etCount"
+        android:background="@drawable/btn_shape"
+        android:text="+"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/etCount"/>
+
+    <Button
+        android:id="@+id/btnMinus"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_toRightOf="@+id/btnPlus"
+        android:background="@drawable/btn_shape"
+        android:text="-"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/etCount"/>
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:text="28,000원"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/etCount"/>
+
+</RelativeLayout>

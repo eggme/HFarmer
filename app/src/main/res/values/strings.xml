@@ -4,4 +4,5 @@
     <string name="drawer_close"></string>
     <string name="title_activity_sub">SubActivity</string>
     <string name="title_activity_order">OrderActivity</string>
+    <string name="title_activity_address">Address</string>
 </resources>
