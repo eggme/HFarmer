@@ -21,17 +21,34 @@ public class DetailGoodsActivity extends AppCompatActivity {
     private Button btnKind;
     private TextView tvTitle;
     private int count = 1;
+    private Choice choice = new Choice();
+    private Button[][] btns = new Button[3][2];
+    private TextView[] views = new TextView[3];
+
+    public class Choice {
+        boolean one = false;
+        boolean two = false;
+        boolean three = false;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_goods);
+        for(int i=0;i<3;i++){
+            for(int j=0;j<2;j++){
+                btns[i][j] = new Button(getApplicationContext());
+            }
+        }
+
 
         Button btnPurchase = (Button)findViewById(R.id.detail_btnPurchase);
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailGoodsActivity.this, OrderActivity.class);
-                startActivity(intent);
+                Toast.makeText(DetailGoodsActivity.this, views[0].getText() + " : " + views[1].getText() + " : " + views[2].getText() , Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(DetailGoodsActivity.this, OrderActivity.class);
+                //startActivity(intent);
             }
         });
 
@@ -44,40 +61,35 @@ public class DetailGoodsActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                KindOfGoodActivity n_layout = new KindOfGoodActivity(getApplicationContext());
                 LinearLayout con = (LinearLayout)findViewById(R.id.con);
-                // activity_kind_of_good.xml 불러오기
 
-
-                con.addView(n_layout);
-
-                etCount = findViewById(R.id.etCount);
-                btnPlus = findViewById(R.id.btnPlus);
-                btnMinus = findViewById(R.id.btnMinus);
-                tvTitle = findViewById(R.id.tvTitle);
-                tvTitle.setText(oItems[which]);
-
-
-                btnPlus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        count++;
-                        etCount.setText(""+count);
-                    }
-                });
-
-                btnMinus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(count != 1){
-                            count--;
+                String text = "";
+                switch (which){
+                    case 0 : text = "2kg";
+                        if(choice.one == true) {
+                            Toast.makeText(getApplicationContext(), "이미 추가되어 있습니다.", Toast.LENGTH_SHORT).show();
+                            break;
                         }
-                        etCount.setText(""+count);
-                    }
-                });
-
-                Toast.makeText(getApplicationContext(),
-                        oItems[which], Toast.LENGTH_LONG).show();
+                        choice.one = true;
+                        addView(text,con,0);
+                        break;
+                    case 1 : text = "1kg";
+                        if(choice.two == true) {
+                            Toast.makeText(getApplicationContext(), "이미 추가되어 있습니다.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        choice.two = true;
+                        addView(text,con,1);
+                        break;
+                    case 2 : text = "500g";
+                        if(choice.three == true) {
+                            Toast.makeText(getApplicationContext(), "이미 추가되어 있습니다.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        choice.three = true;
+                        addView(text,con,2);
+                        break;
+                }
             }
         }).setCancelable(true);
 
@@ -90,4 +102,30 @@ public class DetailGoodsActivity extends AppCompatActivity {
 
     }
 
+    public void addView(String text, LinearLayout con, int num){
+        final TextView tv1 = new TextView(getApplicationContext());
+        tv1.setText(text);
+        tv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "gggggdfasdasdasd", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btns[num][0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv1.setText("가격이 올라감");
+            }
+        });
+        btns[num][1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv1.setText("가격이 내려감");
+            }
+        });
+        views[num] = tv1;
+        con.addView(tv1);
+        con.addView(btns[num][0]);
+        con.addView(btns[num][1]);
+    }
 }
