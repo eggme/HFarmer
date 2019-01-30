@@ -107,19 +107,12 @@ public class HomeFragment extends Fragment {
             public void onLongItemClick(View view, int position) {
 
             }
+
+
         }));
 
         return view;
 
     }
-
-
-
-
-
-
-
-
-
 
 }
