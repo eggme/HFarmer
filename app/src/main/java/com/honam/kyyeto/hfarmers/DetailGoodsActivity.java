@@ -2,6 +2,8 @@ package com.honam.kyyeto.hfarmers;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -48,33 +50,53 @@ public class DetailGoodsActivity extends AppCompatActivity {
             }
         }
 
-
         Button btnPurchase = (Button)findViewById(R.id.detail_btnPurchase);
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(DetailGoodsActivity.this)
-                        .setTitle("")
-                        .setMessage("해당 상품은 최소 1개 이상" +
-                                "주문하셔야 합니다.")
-                        .setNeutralButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        }).show();
                 int count;
-                for(int i = 0; i > 3; i++){
-                    count =Integer.parseInt(String.valueOf(views[i].getText()));
-                    if(count < 1){
-                        Toast.makeText(DetailGoodsActivity.this, views[0].getText() , Toast.LENGTH_SHORT).show();
+                boolean ok = true;
+                if (choice.one == true || choice.two == true || choice.three == true) {
+                    for (int i = 0; i < 3; i++) {
+                        if (views[i] != null) {
+                            count = Integer.parseInt(views[i].getText().toString());
+                            if (count <= 0) {
+                                ok = false;
+                            }
+
+                        }
+                    }
+
+                    if (ok == false) {
+                        new AlertDialog.Builder(DetailGoodsActivity.this)
+                                .setTitle("")
+                                .setMessage("해당 상품은 최소 1개 이상" +
+                                        "주문하셔야 합니다.")
+                                .setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                }).show();
+                    } else {
+                        Intent intent = new Intent(DetailGoodsActivity.this, OrderActivity.class);
+                        startActivity(intent);
                     }
                 }
+                else {
+                    new AlertDialog.Builder(DetailGoodsActivity.this)
+                            .setTitle("")
+                            .setMessage("해당 상품은 최소 1개 이상" +
+                                    "주문하셔야 합니다.")
+                            .setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                //Toast.makeText(DetailGoodsActivity.this, views[0].getText() + " : " + views[1].getText() + " : " + views[2].getText() , Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(DetailGoodsActivity.this, OrderActivity.class);
-                //startActivity(intent);
+                                }
+                            }).show();
+                }
             }
+
         });
 
         btnKind = findViewById(R.id.btnKind);
@@ -129,11 +151,7 @@ public class DetailGoodsActivity extends AppCompatActivity {
         });
 
     }
-    public int cal(int a){
-        float mScale = getResources().getDisplayMetrics().density;
-        final int calHeight = (int)(a*mScale);
-        return calHeight;
-    }
+
     @SuppressLint("ResourceType")
     public void addView(String text, LinearLayout con, int num){
         //RelativeLayout rl = new RelativeLayout(getApplicationContext());
@@ -197,10 +215,20 @@ public class DetailGoodsActivity extends AppCompatActivity {
                 et1.setText(""+count);
             }
         });
+        final TextView tv2 = new TextView(getApplicationContext());
+        tv2.setId(5);
+        tv2.setText("25,000원");
+        tv2.setTextColor(Color.RED);
+        RelativeLayout.LayoutParams payTvParams = new RelativeLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT,150);
+        payTvParams.addRule(RelativeLayout.ALIGN_TOP, 2);
+        payTvParams.addRule(RelativeLayout.RIGHT_OF, 4);
+        tv2.setLayoutParams(payTvParams);
         views[num] = et1;
         con.addView(tv1);
         con.addView(et1);
         con.addView(btns[num][0]);
         con.addView(btns[num][1]);
+        con.addView(tv2);
     }
 }
