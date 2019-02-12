@@ -17,16 +17,17 @@ import com.honam.kyyeto.hfarmers.Fragment.FragmentAdapter;
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
     private DrawerLayout drawer;
-
     private ViewPager viewPager;
     private TabLayout tabLayout;
-
+    private BackPressCloseHandler backPressCloseHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, LodingActivity.class);
         startActivity(intent);
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,4 +65,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
+    }
 }
