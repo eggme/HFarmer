@@ -1,6 +1,7 @@
 package com.honam.kyyeto.hfarmers;
 
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 
 import android.support.v4.view.ViewPager;
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent intent = new Intent(this, LodingActivity.class);
+        startActivity(intent);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
